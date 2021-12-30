@@ -1,5 +1,5 @@
-import { logger, open, write, read } from 'utils/index';
-import { ModuleType, moduleTypeEnum } from 'interfaces/module';
+import { logger, open, write, read } from 'utils/index.js';
+import { ModuleType, moduleTypeEnum } from 'interfaces/module.js';
 
 import { IList } from 'list/interfaces.js';
 

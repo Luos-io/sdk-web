@@ -1,4 +1,4 @@
-import { ModuleType } from 'interfaces/module';
+import { ModuleType } from 'interfaces/module.js';
 
 export interface ISerialActionHandler<T> {
   (port: SerialPort, debug: boolean): Promise<T>;
