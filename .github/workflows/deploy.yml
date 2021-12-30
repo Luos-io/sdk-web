@@ -1,0 +1,18 @@
+name: Publish
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call 'Build' workflow
+        uses: luos-io/sdk-web/.github/worflow/build.yml@main
+
+      - name: Publish
+        run: yarn publish --access private
+        with:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

@@ -13,18 +13,23 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/K0rdan/sdk-web.git"
+    "url": "git+https://github.com/luos-io/sdk-web.git"
   },
   "bugs": {
-    "url": "https://github.com/K0rdan/sdk-web/issues"
+    "url": "https://github.com/luos-io/sdk-web/issues"
   },
-  "homepage": "https://github.com/K0rdan/sdk-web#readme",
+  "homepage": "https://github.com/K0rdanluos-io/sdk-web#readme",
+  "scripts": {
+    "build": "rimraf ./lib && tsc && tsc-alias",
+    "dev": "rimraf ./lib & tsc -w & tsc-alias -w"
+  },
   "dependencies": {
     "@luos-io/utils": "^0.0.1"
   },
   "devDependencies": {
     "@types/node": "^17.0.2",
     "@types/w3c-web-serial": "^1.0.2",
+    "rimraf": "^3.0.2",
     "tsc-alias": "^1.5.0",
     "typescript": "^4.5.4"
   },
