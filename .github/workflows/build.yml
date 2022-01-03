@@ -1,4 +1,4 @@
-name: SDK-Web Build
+name: Build
 
 on: [push, workflow_call]
 
@@ -15,9 +15,10 @@ jobs:
         with:
           node-version: '14'
           registry-url: 'https://registry.npmjs.org'
+          scope: '@luos-io'
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile --non-interactive --prod
+        run: yarn
 
-      - name: build
+      - name: Build package
         run: yarn build

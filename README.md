@@ -16,4 +16,5 @@ brew install act
 
 ```yml
 NPM_TOKEN=
+GITHUB_TOKEN=
 ```
