@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "author": "Luos",
   "description": "",
-  "private": true,
   "license": "MIT",
   "type": "module",
   "types": "./lib/index.d.ts",
