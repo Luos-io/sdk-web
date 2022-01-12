@@ -79,7 +79,7 @@ export const rtb: IRTB = async ({ debug }) => {
       if (isPortOpen) {
         const hasWriteSucceed = await write(
           port,
-          Buffer.from([0xf0, 0xff, 0x03, 0x00, 0x3d, 0x00, 0x00, 0x7e]),
+          Buffer.from([0xf0, 0xff, 0x03, 0x00, 0x0e, 0x00, 0x00, 0x7e]),
           debug,
         );
         if (hasWriteSucceed && port.readable) {
