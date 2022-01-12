@@ -148,7 +148,10 @@ export const rtb: IRTB = async ({ debug }) => {
                       );
                     }
                     index += 22;
-                  } while (parseMode(rtb.slice(index)) !== RTBMode.CLEAR);
+                  } while (
+                    rtb.slice(index).length !== 0 &&
+                    parseMode(rtb.slice(index)) !== RTBMode.CLEAR
+                  );
                   result = {
                     ...result,
                     nodes,
