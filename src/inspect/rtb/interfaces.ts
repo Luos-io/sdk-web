@@ -1,29 +1,20 @@
-export interface RTBOptions {
-  debug: boolean;
-}
+import { CommonOptions } from 'interfaces/common.js';
+import { Service } from 'inspect/service/interfaces.js';
+
+export interface RTBOptions extends CommonOptions {}
+
 export enum RTBMode {
   CLEAR,
   SERVICE,
   NODE,
 }
-export enum RTBServiceAccess {
-  READ_WRITE_ACCESS,
-  READ_ONLY_ACCESS,
-  WRITE_ONLY_ACCESS,
-  NO_ACCESS,
-}
+
 export type RTBServiceAlias = string[];
-export interface RTBService {
-  ID: number;
-  type: number;
-  access: RTBServiceAccess;
-  alias: string;
-}
 export interface RTBNode {
   ID: number;
   certificate: boolean;
   portTable: number[];
-  services: RTBService[];
+  services: Service[];
 }
 export interface RTBData {
   protocol: number;
@@ -36,6 +27,6 @@ export interface RTBData {
 }
 
 export interface IRTB {
-  (options: RTBOptions): Promise<RTBData[]>;
+  (port: SerialPort, options: RTBOptions): Promise<RTBData[]>;
 }
 export default IRTB;

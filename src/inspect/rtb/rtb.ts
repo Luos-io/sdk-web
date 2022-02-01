@@ -1,12 +1,6 @@
-import { logger, open, close, write } from 'utils/index.js';
-import {
-  IRTB,
-  RTBData,
-  RTBMode,
-  RTBNode,
-  RTBService,
-  RTBServiceAccess,
-} from 'inspect/rtb/interfaces.js';
+import { logger, open /*, close*/, write } from 'utils/index.js';
+import { IRTB, RTBData, RTBMode, RTBNode } from 'inspect/rtb/interfaces.js';
+import { Service, ServiceAccess } from 'inspect/service/interfaces.js';
 
 /**
  * @description Parse the RTB response and detect the first mode
@@ -50,10 +44,10 @@ const parseNode = (rtb: Buffer): RTBNode => {
  * @param rtb : Slice of the RTB response containing the service details
  * @returns RTBService
  */
-const parseService = (rtb: Buffer): RTBService => {
+const parseService = (rtb: Buffer): Service => {
   const ID = rtb.readUInt16LE(0);
   const type = rtb.readUInt16LE(2);
-  const access: RTBServiceAccess = rtb.readUInt8(4);
+  const access: ServiceAccess = rtb.readUInt8(4);
   const alias = rtb
     .slice(5, 22)
     .filter((v) => v !== 0x00 && v !== 0xff)
@@ -64,10 +58,12 @@ const parseService = (rtb: Buffer): RTBService => {
     type,
     access,
     alias,
+    firmware: null,
+    statistics: null,
   };
 };
 
-export const rtb: IRTB = async ({ debug }) => {
+export const rtb: IRTB = async (_port, { debug }) => {
   const ports = await navigator.serial.getPorts();
   if (ports.length === 0) {
     ports.push(await navigator.serial.requestPort());
@@ -206,8 +202,8 @@ export const rtb: IRTB = async ({ debug }) => {
       );
       return Promise.reject();
     } finally {
-      logger.info('Closing the serial port ...');
-      await close(port);
+      // logger.info('Closing the serial port ...');
+      // await close(port);
     }
   });
 
