@@ -54,12 +54,13 @@ export const statistics: IServiceStatistics = async (id, port, options) => {
         0x00,
         0x7e,
       ]);
-      console.log(id.toString(), 'Sending firmware request...');
       const hasWriteSucceed = await write(port, data, options?.debug ?? false);
       if (hasWriteSucceed && port.readable) {
         if (port.readable?.locked === true) {
           if (options?.debug) {
-            logger.debug(id.toString(), 'Waiting for port to be readable ...');
+            logger.debug(
+              `Waiting for port to be readable for service '${id.toString()}' ...`,
+            );
           }
           await waitForReadable2(port);
         }
@@ -119,17 +120,15 @@ export const statistics: IServiceStatistics = async (id, port, options) => {
                 };
                 break;
               } else {
-                console.log(
-                  id.toString(),
-                  'strange buffer size',
+                console.warn(
+                  `Strange buffer size for service : ${id.toString()}`,
                   buffer.length,
                   buffer,
                 );
               }
             } else if (buffer.length > 0 && remainingBytes > 0) {
-              console.log(
-                id.toString(),
-                'Not regulare buffer size',
+              console.warn(
+                `Not regular buffer size for service : ${id.toString()}`,
                 remainingBytes,
               );
               remainingBytes -= buffer.length;
@@ -141,7 +140,6 @@ export const statistics: IServiceStatistics = async (id, port, options) => {
         } catch (err) {
           const { message, stack } = err as Error;
           logger.error(
-            id.toString(),
             'Error while reading data from :',
             message,
             stack ? stack : '',
@@ -156,7 +154,6 @@ export const statistics: IServiceStatistics = async (id, port, options) => {
     return Promise.reject('Port is not open');
   } catch (err) {
     logger.warn(
-      id.toString(),
       'Can not init communication with the serial port.',
       (err as Error).message,
     );

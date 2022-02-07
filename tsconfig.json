@@ -1,12 +1,12 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "module": "esnext",
+    "module": "ES2020",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "lib": ["DOM", "DOM.Iterable", "ES2020"],
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
     "noFallthroughCasesInSwitch": true,
@@ -18,10 +18,10 @@
     "declaration": true,
     "declarationMap": true,
     "paths": {
-      "interfaces": ["interfaces/*"],
-      "utils": ["utils/*"],
       "inspect": ["inspect/*"],
-      "list": ["list/*"]
+      "interfaces": ["interfaces/*"],
+      "list": ["list/*"],
+      "utils": ["utils/*"]
     },
     "moduleResolution": "node"
   },

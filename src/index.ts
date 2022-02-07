@@ -51,7 +51,12 @@ export class SDK {
     if (this._state !== STATE.READY) {
       throw new Error('SDK not ready');
     }
-    return await service.firmware(serviceId, serialport, options);
+    try {
+      return await service.firmware(serviceId, serialport, options);
+    } catch (error) {
+      console.error(error);
+      return Promise.reject(error);
+    }
   };
   public getServiceStatistics: IServiceStatistics = async (
     serviceId,
@@ -62,9 +67,7 @@ export class SDK {
       throw new Error('SDK not ready');
     }
     try {
-      const test = await service.statistics(serviceId, serialport, options);
-      console.log('TEST', test);
-      return test;
+      return await service.statistics(serviceId, serialport, options);
     } catch (error) {
       console.error(error);
       return Promise.reject(error);
