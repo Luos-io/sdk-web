@@ -1,15 +1,15 @@
 import {
   IServiceStatistics,
   ServiceStatistics,
-  ServiceStatisticsData,
 } from 'inspect/service/statistics/interfaces.js';
 
 import {
   logger,
   open,
   waitForWritable,
-  write,
+  writeInspector,
   waitForReadable2,
+  readInspector,
 } from 'utils/index.js';
 
 const parseStatistics = (buffer: Buffer): ServiceStatistics => {
@@ -33,6 +33,11 @@ const parseStatistics = (buffer: Buffer): ServiceStatistics => {
 };
 
 export const statistics: IServiceStatistics = async (id, port, options) => {
+  // ID must be encoded on 2 Bytes, so we check if it fits the requirement
+  if (id > 0xffff) {
+    return Promise.reject(`This ID (${id}) is not supported`);
+  }
+
   try {
     const isPortOpen = await open(port, options?.debug ?? false);
     if (isPortOpen) {
@@ -42,19 +47,16 @@ export const statistics: IServiceStatistics = async (id, port, options) => {
         }
         await waitForWritable(port);
       }
-      const data = Buffer.from([
-        0x00,
-        0x03,
-        0x00,
-        0x00,
-        0x15,
-        0x00,
-        0x02,
-        id,
-        0x00,
-        0x7e,
+
+      const commandBuffer = Buffer.concat([
+        Buffer.from([0x00, 0x03, 0x00, 0x00, 0x15, 0x00, 0x02]),
+        Buffer.from(new Uint16Array([id]).buffer),
       ]);
-      const hasWriteSucceed = await write(port, data, options?.debug ?? false);
+      const hasWriteSucceed = await writeInspector(
+        port,
+        commandBuffer,
+        options?.debug ?? false,
+      );
       if (hasWriteSucceed && port.readable) {
         if (port.readable?.locked === true) {
           if (options?.debug) {
@@ -64,89 +66,53 @@ export const statistics: IServiceStatistics = async (id, port, options) => {
           }
           await waitForReadable2(port);
         }
-        const reader = port.readable?.getReader();
-        try {
-          let remainingBytes = 0;
-          let statisticsBuffer = Buffer.from([]);
-          let result: ServiceStatisticsData = {
-            protocol: 0,
-            target: 0,
-            mode: 0,
-            source: 0,
-            command: 0,
-            size: 0,
-            statistics: null,
-          };
 
-          do {
-            const { value, done } = await reader.read();
-            if (done || !value) {
-              break;
-            }
+        const result = await readInspector(port, options?.debug);
 
-            const buffer = Buffer.from(value);
-            const gotHeader = buffer.indexOf(
-              Buffer.from([0x7e, 0x7e, 0x7e, 0x7e]),
-              0,
+        if (result) {
+          const protocol = result.readUInt8(0) & 0b1111;
+          const target =
+            (result.readUInt8(0) >> 4) | (result.readUInt8(1) << 4);
+          const mode = result.readUInt8(2) & 0b1111;
+          const source =
+            (result.readUInt8(2) >> 4) | (result.readUInt8(3) << 4);
+          const command = result.readUInt8(4);
+          const size = result.readUInt16LE(5);
+
+          const statistics = parseStatistics(result.slice(7));
+
+          if (options?.debug) {
+            console.group('Statistics command data:');
+            console.log('Protocol', protocol.toString(10));
+            console.log('Target', target.toString(10));
+            console.log('Mode', mode.toString(10));
+            console.log('Source', source.toString(10));
+            console.log('Command', command.toString(10));
+            console.log('Size', size.toString(10));
+            console.group('Statistics:');
+            console.log('RX_MAX_STACK_RATIO', statistics.rx_msg_stack_ratio);
+            console.log('LUOS_STACK_RATIO', statistics.luos_stack_ratio);
+            console.log('TX_MSG_STACK_RATIO', statistics.tx_msg_stack_ratio);
+            console.log(
+              'BUFFER_OCCUPATION_RATIO',
+              statistics.buffer_occupation_ratio,
             );
-            if (gotHeader !== -1) {
-              const protocol = buffer.readUInt8(4) & 0b1111;
-              const target =
-                (buffer.readUInt8(4) >> 4) | (buffer.readUInt8(5) << 4);
-              const mode = buffer.readUInt8(6) & 0b1111;
-              const source =
-                (buffer.readUInt8(6) >> 4) | (buffer.readUInt8(7) << 4);
-              const command = buffer.readUInt8(8);
+            console.log('MSG_DROP_NUMBER', statistics.msg_drop_number);
+            console.log('MAX_LOOP_TIME_MS', statistics.max_loop_time_ms);
+            console.log('MAX_RETRY', statistics.max_retry);
+            console.groupEnd();
+            console.groupEnd();
+          }
 
-              result = {
-                ...result,
-                protocol,
-                target,
-                mode,
-                source,
-                command,
-              };
-
-              if (buffer.length > 10) {
-                const size = buffer.readUInt16LE(9);
-                const payload = buffer.slice(11);
-                statisticsBuffer = Buffer.concat([statisticsBuffer, payload]);
-
-                const statistics = parseStatistics(statisticsBuffer);
-                result = {
-                  ...result,
-                  size,
-                  statistics,
-                };
-                break;
-              } else {
-                console.warn(
-                  `Strange buffer size for service : ${id.toString()}`,
-                  buffer.length,
-                  buffer,
-                );
-              }
-            } else if (buffer.length > 0 && remainingBytes > 0) {
-              console.warn(
-                `Not regular buffer size for service : ${id.toString()}`,
-                remainingBytes,
-              );
-              remainingBytes -= buffer.length;
-            }
-          } while (port.readable);
-
-          reader.releaseLock();
-          return result;
-        } catch (err) {
-          const { message, stack } = err as Error;
-          logger.error(
-            'Error while reading data from :',
-            message,
-            stack ? stack : '',
-          );
-          return Promise.reject(err);
-        } finally {
-          reader.releaseLock();
+          return {
+            protocol,
+            target,
+            mode,
+            source,
+            command,
+            size,
+            statistics,
+          };
         }
       }
     }

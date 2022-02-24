@@ -1,4 +1,4 @@
-import { logger, open, write, read } from 'utils/index.js';
+import { logger, open, write, readGate } from 'utils/index.js';
 import { ModuleType, moduleTypeEnum } from 'interfaces/module.js';
 
 import { IList } from 'list/interfaces.js';
@@ -13,7 +13,7 @@ const checkPortCompatibility = async (
     if (isPortOpen) {
       const hasWriteSucceed = await write(port, '{"discover": {}}\r', debug);
       if (hasWriteSucceed) {
-        const message = await read(port, debug);
+        const message = await readGate(port, debug);
         const json = JSON.parse(message);
         const response = moduleTypeEnum.find(
           (moduleType) => json[moduleType.toLowerCase()] !== undefined,

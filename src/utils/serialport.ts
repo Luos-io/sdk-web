@@ -1,6 +1,9 @@
 import { logger } from 'utils/logger.js';
 import { CustomSerialOptions } from 'interfaces/serialport.js';
 
+const header = Buffer.from([0x7e]);
+const footer = Buffer.from([0x81]);
+
 export const defaultSerialOptions: CustomSerialOptions = {
   baudRate: 1000000,
   dataBits: 8,
@@ -131,6 +134,25 @@ export const write = async (
   return false;
 };
 
+export const writeInspector = (
+  port: SerialPort,
+  command: Buffer,
+  debug: boolean = false,
+) => {
+  // Command's size must be encoded on 2 Bytes, so we check if it fits the requirement
+  if (command.length > 0xffff) {
+    return Promise.reject("Command buffer's size too big!");
+  }
+
+  const commandSize = Buffer.from(new Uint16Array([command.length]).buffer);
+
+  return write(
+    port,
+    Buffer.concat([header, commandSize, command, footer]),
+    debug,
+  );
+};
+
 export const waitForReadable2 = async (port: SerialPort) =>
   cancellablePromiseWithTimeout(
     {
@@ -159,7 +181,7 @@ export const waitForReadable = async (port: SerialPort) =>
     }, 1000);
   });
 
-export const read = async (
+export const readGate = async (
   port: SerialPort,
   debug: boolean = false,
 ): Promise<any | undefined> => {
@@ -186,6 +208,69 @@ export const read = async (
       if (debug) {
         logger.log('Message received', message);
       }
+    } catch (err) {
+      const { message, stack } = err as Error;
+      logger.error(
+        'Error while reading data from :',
+        message,
+        stack ? stack : '',
+      );
+    } finally {
+      reader.releaseLock();
+    }
+  }
+  return undefined;
+};
+
+export const readInspector = async (
+  port: SerialPort,
+  _debug: boolean = false,
+): Promise<Buffer | undefined> => {
+  if (port.readable) {
+    const reader = port.readable.getReader();
+    try {
+      let remainingBytes = 0;
+      let result = Buffer.from([]);
+
+      do {
+        const { value, done } = await reader.read();
+        if (done || !value) {
+          break;
+        }
+
+        const buffer = Buffer.from(value);
+        const gotHeader = buffer.indexOf(Buffer.from([0x7e]), 0);
+        const gotFooter = buffer.indexOf(Buffer.from([0x81]), 0);
+
+        if (gotHeader !== -1) {
+          const size = buffer.readUInt16LE(1);
+          const payload = buffer.slice(3);
+
+          remainingBytes = size - payload.length;
+          result = Buffer.concat([result, payload]);
+        }
+
+        if (gotFooter !== -1) {
+          if (remainingBytes >= 0) {
+            remainingBytes -= gotFooter;
+            result = Buffer.concat([result, buffer.slice(0, gotFooter)]);
+          } else {
+            remainingBytes = 0;
+            result = result.slice(0, result.length - 1);
+          }
+        }
+
+        if (gotHeader === -1 && gotFooter === -1 && remainingBytes > 0) {
+          remainingBytes -= buffer.length;
+          result = Buffer.concat([result, buffer]);
+        }
+
+        if (remainingBytes === 0) {
+          break;
+        }
+      } while (port.readable);
+
+      return result;
     } catch (err) {
       const { message, stack } = err as Error;
       logger.error(
