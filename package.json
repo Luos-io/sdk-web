@@ -1,6 +1,6 @@
 {
   "name": "@luos-io/sdk-web",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "author": "Luos",
   "description": "",
   "license": "MIT",
@@ -18,10 +18,10 @@
   "bugs": {
     "url": "https://github.com/luos-io/sdk-web/issues"
   },
-  "homepage": "https://github.com/K0rdanluos-io/sdk-web#readme",
+  "homepage": "https://github.com/luos-io/sdk-web#readme",
   "scripts": {
     "build": "rimraf ./lib && tsc && tsc-alias",
-    "build:watch": "rimraf ./lib & tsc -w & tsc-alias -w",
+    "build:watch": "rimraf ./lib & tsc -w & tsc-alias -w"
   },
   "dependencies": {
     "@luos-io/utils": "^0.0.2",
