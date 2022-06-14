@@ -52,12 +52,11 @@ export const open = async (
     await port.open(defaultSerialOptions);
     return true;
   } catch (err) {
-    if (
-      (err as DOMException).code === DOMException.INVALID_STATE_ERR &&
-      debug
-    ) {
+    if ((err as DOMException).code === DOMException.INVALID_STATE_ERR) {
       const { usbProductId, usbVendorId } = port.getInfo();
-      logger.debug(`Port (${usbProductId} / ${usbVendorId}) already open`);
+      if (debug) {
+        logger.debug(`Port (${usbProductId} / ${usbVendorId}) already open`);
+      }
       return true;
     }
     return false;
