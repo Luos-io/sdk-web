@@ -49,7 +49,7 @@ export const statistics: IServiceStatistics = async (id, port, options) => {
       }
 
       const commandBuffer = Buffer.concat([
-        Buffer.from([0x00, 0x03, 0x00, 0x00, 0x15, 0x00, 0x02]),
+        Buffer.from([0x00, 0x03, 0x00, 0x00, 0x14, 0x00, 0x02]),
         Buffer.from(new Uint16Array([id]).buffer),
       ]);
       const hasWriteSucceed = await writeInspector(
