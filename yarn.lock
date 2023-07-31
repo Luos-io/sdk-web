@@ -30,15 +30,141 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
+"@serialport/binding-mock@10.2.2":
+  version "10.2.2"
+  resolved "https://registry.yarnpkg.com/@serialport/binding-mock/-/binding-mock-10.2.2.tgz#d322a8116a97806addda13c62f50e73d16125874"
+  integrity sha512-HAFzGhk9OuFMpuor7aT5G1ChPgn5qSsklTFOTUX72Rl6p0xwcSVsRtG/xaGp6bxpN7fI9D/S8THLBWbBgS6ldw==
+  dependencies:
+    "@serialport/bindings-interface" "^1.2.1"
+    debug "^4.3.3"
+
+"@serialport/bindings-cpp@11.0.3":
+  version "11.0.3"
+  resolved "https://registry.yarnpkg.com/@serialport/bindings-cpp/-/bindings-cpp-11.0.3.tgz#ab4d4826ef657e326b6c99d6b8a113d834378a93"
+  integrity sha512-xgNDJ7pHHZCJMoDsEH+D8q5CV+V3RGN4/jLEG9SQ7q6kh+o03axV0l/upPHZ0HW4tTXpGgqPIGbXOTrD4RGQQA==
+  dependencies:
+    "@serialport/bindings-interface" "1.2.2"
+    "@serialport/parser-readline" "11.0.0"
+    debug "4.3.4"
+    node-addon-api "6.1.0"
+    node-gyp-build "4.6.0"
+
+"@serialport/bindings-interface@1.2.2", "@serialport/bindings-interface@^1.2.1":
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/@serialport/bindings-interface/-/bindings-interface-1.2.2.tgz#c4ae9c1c85e26b02293f62f37435478d90baa460"
+  integrity sha512-CJaUd5bLvtM9c5dmO9rPBHPXTa9R2UwpkJ0wdh9JCYcbrPWsKz+ErvR0hBLeo7NPeiFdjFO4sonRljiw4d2XiA==
+
+"@serialport/parser-byte-length@11.0.1":
+  version "11.0.1"
+  resolved "https://registry.yarnpkg.com/@serialport/parser-byte-length/-/parser-byte-length-11.0.1.tgz#26e4f3b2d66aaac0859b18a57c648d0eec78392a"
+  integrity sha512-UsffR5b3NHwhjJzsWv5fZMkoq3wGNyUcRTA9jlu02w+2kMlBRJPzlPVB5szVX0VWUEqkCg+3VaU2XWuYr+uAUA==
+
+"@serialport/parser-cctalk@11.0.1":
+  version "11.0.1"
+  resolved "https://registry.yarnpkg.com/@serialport/parser-cctalk/-/parser-cctalk-11.0.1.tgz#70c5ccc8fc5ebbe5c317005791155d3b2812efa6"
+  integrity sha512-klzVQfRcC1m0SVDV2Dy9hHfwweO2/mUMUyuXK04FRkKHy5/AdETmk9KTVVVVfpDCSysvHoyQPwiDFq8ddwX3cQ==
+
+"@serialport/parser-delimiter@11.0.0":
+  version "11.0.0"
+  resolved "https://registry.yarnpkg.com/@serialport/parser-delimiter/-/parser-delimiter-11.0.0.tgz#e830c6bb49723d4446131277dc3243b502d09388"
+  integrity sha512-aZLJhlRTjSmEwllLG7S4J8s8ctRAS0cbvCpO87smLvl3e4BgzbVgF6Z6zaJd3Aji2uSiYgfedCdNc4L6W+1E2g==
+
+"@serialport/parser-delimiter@11.0.1":
+  version "11.0.1"
+  resolved "https://registry.yarnpkg.com/@serialport/parser-delimiter/-/parser-delimiter-11.0.1.tgz#c0bcc24d8060c6b352cbe6003ebe95671ad32221"
+  integrity sha512-NAsYa3OFt2xEnj/+0BRkQP2qkRNbXBPEq6uFJEdNdzcTSF+BTRXkoIRrWBq3N6koovPqW6lnbxc/iJYe5AX/2Q==
+
+"@serialport/parser-inter-byte-timeout@11.0.1":
+  version "11.0.1"
+  resolved "https://registry.yarnpkg.com/@serialport/parser-inter-byte-timeout/-/parser-inter-byte-timeout-11.0.1.tgz#ed6d939eeb3bec94579fb3628dc6dcd0c9a3dd21"
+  integrity sha512-PEFV9dSpW+ptH1rLhdB9KgE+rbJ/FvQiZz0mx+4jkv/Po4g3PNsEEMXfMW0aQVSFVsmitvmE0jHlhGjLv8GQEg==
+
+"@serialport/parser-packet-length@11.0.1":
+  version "11.0.1"
+  resolved "https://registry.yarnpkg.com/@serialport/parser-packet-length/-/parser-packet-length-11.0.1.tgz#9d7982a6eeaf9a5bdfe642ceb287f171ab2965b7"
+  integrity sha512-KwPu8dsAI+eN4fnUS1vVmrOpUtBK4p9L9cHhwn5ZmfcvwvZMHp/J+IEu7xH0g5aM1/8QEoaql26BQP+sZ71NQQ==
+
+"@serialport/parser-readline@11.0.0":
+  version "11.0.0"
+  resolved "https://registry.yarnpkg.com/@serialport/parser-readline/-/parser-readline-11.0.0.tgz#c2c8c88e163d2abf7c0ffddbc1845336444e3454"
+  integrity sha512-rRAivhRkT3YO28WjmmG4FQX6L+KMb5/ikhyylRfzWPw0nSXy97+u07peS9CbHqaNvJkMhH1locp2H36aGMOEIA==
+  dependencies:
+    "@serialport/parser-delimiter" "11.0.0"
+
+"@serialport/parser-readline@11.0.1":
+  version "11.0.1"
+  resolved "https://registry.yarnpkg.com/@serialport/parser-readline/-/parser-readline-11.0.1.tgz#e85805ae803c2dc507eefa390abec6a67ceef313"
+  integrity sha512-wkJ3EI733+yhbi7eBWzs/qn8+cfIBcYQjfrILPNqslAy6VlgdKw+pHoblDFmg78GN0TqGUDSWlTJ65oLEPVp5Q==
+  dependencies:
+    "@serialport/parser-delimiter" "11.0.1"
+
+"@serialport/parser-ready@11.0.1":
+  version "11.0.1"
+  resolved "https://registry.yarnpkg.com/@serialport/parser-ready/-/parser-ready-11.0.1.tgz#bba01283a121880641e43c27193e6708fef2907c"
+  integrity sha512-v/bvlgKhrNt+SVLSqlfXCO1HEinfRRMGnzqbpdVCgu2SiWIEenCLjs51JisKVYQoQFcXdP/EHZnzm7NPXHDlAg==
+
+"@serialport/parser-regex@11.0.1":
+  version "11.0.1"
+  resolved "https://registry.yarnpkg.com/@serialport/parser-regex/-/parser-regex-11.0.1.tgz#7833ca6029c8c58eb39dd6fe984756cf09d769b7"
+  integrity sha512-Lf3k7qibYqZ0+/wX3UA8fRng3WtQ+UyLpjQhG1COs6OBSq5/I5tYXczfhlrbA0gHo1qzgzr2V2t7m6FoBSc81Q==
+
+"@serialport/parser-slip-encoder@11.0.1":
+  version "11.0.1"
+  resolved "https://registry.yarnpkg.com/@serialport/parser-slip-encoder/-/parser-slip-encoder-11.0.1.tgz#4ba0c335627e3d1203279a5f8a4c1af0c829b7fe"
+  integrity sha512-l4mXsAGzpmPO7+uqKJqtPDW643irfnGEWbiy34FoYvuOs8n0SmiMtgQZFAtvlTNQCRWE2tykF/WG6K/McJthDw==
+
+"@serialport/parser-spacepacket@11.0.1":
+  version "11.0.1"
+  resolved "https://registry.yarnpkg.com/@serialport/parser-spacepacket/-/parser-spacepacket-11.0.1.tgz#9e1c372f45433afb9a5dbec7b5a298c710b0455b"
+  integrity sha512-Lq7fXoOsLOMo4XEt9HB31zV5LhrteXlsOy2o6r39TfRwU6x8Nou9jQMA9vW0a6yPra5zwsHIaNrA6tDOGj2Ozg==
+
+"@serialport/stream@11.0.1":
+  version "11.0.1"
+  resolved "https://registry.yarnpkg.com/@serialport/stream/-/stream-11.0.1.tgz#ed40c66d517cfebf7185cd9c37ba0a08e76f88b2"
+  integrity sha512-6pjyKRg8MQuvhGfg36+PF7K5eGNQcEswCSiAg1UPilqqFS8X1QnaiSCn5UFp/hCN+pAtlFjkOi0ztvtmSI7n4g==
+  dependencies:
+    "@serialport/bindings-interface" "1.2.2"
+    debug "4.3.4"
+
+"@types/jest@^27.4.0":
+  version "27.5.2"
+  resolved "https://registry.yarnpkg.com/@types/jest/-/jest-27.5.2.tgz#ec49d29d926500ffb9fd22b84262e862049c026c"
+  integrity sha512-mpT8LJJ4CMeeahobofYWIjFo0xonRS/HfxnVEPMPFSQdGUt1uHCnoPT7Zhb+sjDU2wz0oKV0OLUR0WzrHNgfeA==
+  dependencies:
+    jest-matcher-utils "^27.0.0"
+    pretty-format "^27.0.0"
+
+"@types/node@*":
+  version "20.4.5"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-20.4.5.tgz#9dc0a5cb1ccce4f7a731660935ab70b9c00a5d69"
+  integrity sha512-rt40Nk13II9JwQBdeYqmbn2Q6IVTA5uPhvSO+JVqdXw/6/4glI6oR9ezty/A9Hg5u7JH4OmYmuQ+XvjKm0Datg==
+
 "@types/node@^17.0.2":
   version "17.0.2"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-17.0.2.tgz#a4c07d47ff737e8ee7e586fe636ff0e1ddff070a"
   integrity sha512-JepeIUPFDARgIs0zD/SKPgFsJEAF0X5/qO80llx59gOxFTboS9Amv3S+QfB7lqBId5sFXJ99BN0J6zFRvL9dDA==
 
+"@types/semver@^7.3.9":
+  version "7.5.0"
+  resolved "https://registry.yarnpkg.com/@types/semver/-/semver-7.5.0.tgz#591c1ce3a702c45ee15f47a42ade72c2fd78978a"
+  integrity sha512-G8hZ6XJiHnuhQKR7ZmysCeJWE08o8T0AXtk5darsCaTVsYZhhgUrq53jizaR2FvsoeCwJhlmwTjkXBY5Pn/ZHw==
+
+"@types/serialport@^8.0.2":
+  version "8.0.2"
+  resolved "https://registry.yarnpkg.com/@types/serialport/-/serialport-8.0.2.tgz#32149f107f66450d4d9760c429923739c97e4a53"
+  integrity sha512-z4b1I8/vdZE3upgCcAL9VAWlVVFUVn5uo3faAHavkVfK/Hb1LUxKwp9YCtA5AZqEUCWoSWl20SRTOvAI/5fQWQ==
+  dependencies:
+    "@types/node" "*"
+
 "@types/w3c-web-serial@^1.0.2":
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/@types/w3c-web-serial/-/w3c-web-serial-1.0.2.tgz#8bf21f90b40dda6d2e2e6b188417b6bd66525d03"
   integrity sha512-Ftx4BtLxgAnel7V7GbHylCYjSq827A+jeEE3SnTS7huCGUN0pSwUn+CchTCT9TkZj9w+NVMUq4Bk2R0GvUNmAQ==
+
+ansi-regex@^5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/ansi-regex/-/ansi-regex-5.0.1.tgz#082cb2c89c9fe8659a311a53bd6a4dc5301db304"
+  integrity sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ==
 
 ansi-styles@^4.1.0:
   version "4.3.0"
@@ -46,6 +172,11 @@ ansi-styles@^4.1.0:
   integrity sha512-zbB9rCJAT1rbjiVDb2hqKFHNYLxgtk8NURxZ3IZwD3F6NtxbXZQCnnSi1Lkx+IDohdPlFp222wVALIheZJQSEg==
   dependencies:
     color-convert "^2.0.1"
+
+ansi-styles@^5.0.0:
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/ansi-styles/-/ansi-styles-5.2.0.tgz#07449690ad45777d1924ac2abb2fc8895dba836b"
+  integrity sha512-Cxwpt2SfTzTtXcfOlzGEee8O+c+MmUgGrNiBcXnuWxuFJHe6a5Hz7qwhwe5OgaSYI0IJvkLqWX1ASG+cJOkEiA==
 
 anymatch@~3.1.2:
   version "3.1.2"
@@ -85,7 +216,7 @@ braces@^3.0.1, braces@~3.0.2:
   dependencies:
     fill-range "^7.0.1"
 
-chalk@^4.1.2:
+chalk@^4.0.0, chalk@^4.1.2:
   version "4.1.2"
   resolved "https://registry.yarnpkg.com/chalk/-/chalk-4.1.2.tgz#aac4e2b7734a740867aeb16bf02aad556a1e7a01"
   integrity sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==
@@ -130,10 +261,22 @@ concat-map@0.0.1:
   resolved "https://registry.yarnpkg.com/concat-map/-/concat-map-0.0.1.tgz#d8a96bd77fd68df7793a73036a3ba0d5405d477b"
   integrity sha1-2Klr13/Wjfd5OnMDajug1UBdR3s=
 
+debug@4.3.4, debug@^4.3.3:
+  version "4.3.4"
+  resolved "https://registry.yarnpkg.com/debug/-/debug-4.3.4.tgz#1319f6579357f2338d3337d2cdd4914bb5dcc865"
+  integrity sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ==
+  dependencies:
+    ms "2.1.2"
+
 detect-file@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/detect-file/-/detect-file-1.0.0.tgz#f0d66d03672a825cb1b73bdb3fe62310c8e552b7"
   integrity sha1-8NZtA2cqglyxtzvbP+YjEMjlUrc=
+
+diff-sequences@^27.5.1:
+  version "27.5.1"
+  resolved "https://registry.yarnpkg.com/diff-sequences/-/diff-sequences-27.5.1.tgz#eaecc0d327fd68c8d9672a1e64ab8dccb2ef5327"
+  integrity sha512-k1gCAXAsNgLwEL+Y8Wvl+M6oEFj5bgazfZULpS5CneoPPXRaCCW7dm+q21Ky2VEE5X+VeRDBVg1Pcvvsr4TtNQ==
 
 dir-glob@^3.0.1:
   version "3.0.1"
@@ -322,6 +465,38 @@ isexe@^2.0.0:
   resolved "https://registry.yarnpkg.com/isexe/-/isexe-2.0.0.tgz#e8fbf374dc556ff8947a10dcb0572d633f2cfa10"
   integrity sha1-6PvzdNxVb/iUehDcsFctYz8s+hA=
 
+jest-diff@^27.5.1:
+  version "27.5.1"
+  resolved "https://registry.yarnpkg.com/jest-diff/-/jest-diff-27.5.1.tgz#a07f5011ac9e6643cf8a95a462b7b1ecf6680def"
+  integrity sha512-m0NvkX55LDt9T4mctTEgnZk3fmEg3NRYutvMPWM/0iPnkFj2wIeF45O1718cMSOFO1vINkqmxqD8vE37uTEbqw==
+  dependencies:
+    chalk "^4.0.0"
+    diff-sequences "^27.5.1"
+    jest-get-type "^27.5.1"
+    pretty-format "^27.5.1"
+
+jest-get-type@^27.5.1:
+  version "27.5.1"
+  resolved "https://registry.yarnpkg.com/jest-get-type/-/jest-get-type-27.5.1.tgz#3cd613c507b0f7ace013df407a1c1cd578bcb4f1"
+  integrity sha512-2KY95ksYSaK7DMBWQn6dQz3kqAf3BB64y2udeG+hv4KfSOb9qwcYQstTJc1KCbsix+wLZWZYN8t7nwX3GOBLRw==
+
+jest-matcher-utils@^27.0.0:
+  version "27.5.1"
+  resolved "https://registry.yarnpkg.com/jest-matcher-utils/-/jest-matcher-utils-27.5.1.tgz#9c0cdbda8245bc22d2331729d1091308b40cf8ab"
+  integrity sha512-z2uTx/T6LBaCoNWNFWwChLBKYxTMcGBRjAt+2SbP929/Fflb9aa5LGma654Rz8z9HLxsrUaYzxE9T/EFIL/PAw==
+  dependencies:
+    chalk "^4.0.0"
+    jest-diff "^27.5.1"
+    jest-get-type "^27.5.1"
+    pretty-format "^27.5.1"
+
+lru-cache@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-6.0.0.tgz#6d6fe6570ebd96aaf90fcad1dafa3b2566db3a94"
+  integrity sha512-Jo6dJ04CmSjuznwJSS3pUeWmd/H0ffTlkXXgwZi+eq1UCmqQwCh+eLsYOYCwY991i2Fah4h1BEMCx4qThGbsiA==
+  dependencies:
+    yallist "^4.0.0"
+
 merge2@^1.3.0:
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/merge2/-/merge2-1.4.1.tgz#4368892f885e907455a6fd7dc55c0c9d404990ae"
@@ -347,10 +522,25 @@ minimatch@^3.0.4:
   dependencies:
     brace-expansion "^1.1.7"
 
+ms@2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/ms/-/ms-2.1.2.tgz#d09d1f357b443f493382a8eb3ccd183872ae6009"
+  integrity sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==
+
 mylas@^2.1.6:
   version "2.1.6"
   resolved "https://registry.yarnpkg.com/mylas/-/mylas-2.1.6.tgz#40f3ac6faf77b966c2c2f7b9c0d21ea65b3d9800"
   integrity sha512-5ggCu4hVRJZE6NpQ309y6ArykK5vujK6LfSAXvsrmBNSX/9Gfq7D9zjxhHyjSR/sbFzCe2hI9LO1EY9KXv/XkQ==
+
+node-addon-api@6.1.0:
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/node-addon-api/-/node-addon-api-6.1.0.tgz#ac8470034e58e67d0c6f1204a18ae6995d9c0d76"
+  integrity sha512-+eawOlIgy680F0kBzPUNFhMZGtJ1YmqM6l4+Crf4IkImjYrO/mqPwRMh352g23uIaQKFItcQ64I7KMaJxHgAVA==
+
+node-gyp-build@4.6.0:
+  version "4.6.0"
+  resolved "https://registry.yarnpkg.com/node-gyp-build/-/node-gyp-build-4.6.0.tgz#0c52e4cbf54bbd28b709820ef7b6a3c2d6209055"
+  integrity sha512-NTZVKn9IylLwUzaKjkas1e4u2DLNcV4rdYagA4PWdPwW87Bi7z+BznyKSRwS/761tV/lzCGXplWsiaMjLqP2zQ==
 
 normalize-path@^3.0.0, normalize-path@~3.0.0:
   version "3.0.0"
@@ -384,10 +574,24 @@ picomatch@^2.0.4, picomatch@^2.2.1, picomatch@^2.2.3:
   resolved "https://registry.yarnpkg.com/picomatch/-/picomatch-2.3.0.tgz#f1f061de8f6a4bf022892e2d128234fb98302972"
   integrity sha512-lY1Q/PiJGC2zOv/z391WOTD+Z02bCgsFfvxoXXf6h7kv9o+WmsmzYqrAwY63sNgOxE4xEdq0WyUnXfKeBrSvYw==
 
+pretty-format@^27.0.0, pretty-format@^27.5.1:
+  version "27.5.1"
+  resolved "https://registry.yarnpkg.com/pretty-format/-/pretty-format-27.5.1.tgz#2181879fdea51a7a5851fb39d920faa63f01d88e"
+  integrity sha512-Qb1gy5OrP5+zDf2Bvnzdl3jsTf1qXVMazbvCoKhtKqVs4/YK4ozX4gKQJJVyNe+cajNPn0KoC0MC3FUmaHWEmQ==
+  dependencies:
+    ansi-regex "^5.0.1"
+    ansi-styles "^5.0.0"
+    react-is "^17.0.1"
+
 queue-microtask@^1.2.2:
   version "1.2.3"
   resolved "https://registry.yarnpkg.com/queue-microtask/-/queue-microtask-1.2.3.tgz#4929228bbc724dfac43e0efb058caf7b6cfb6243"
   integrity sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==
+
+react-is@^17.0.1:
+  version "17.0.2"
+  resolved "https://registry.yarnpkg.com/react-is/-/react-is-17.0.2.tgz#e691d4a8e9c789365655539ab372762b0efb54f0"
+  integrity sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==
 
 readdirp@~3.6.0:
   version "3.6.0"
@@ -422,6 +626,33 @@ run-parallel@^1.1.9:
   integrity sha512-5l4VyZR86LZ/lDxZTR6jqL8AFE2S0IFLMP26AbjsLVADxHdhB/c0GUsH+y39UfCi3dzz8OlQuPmnaJOMoDHQBA==
   dependencies:
     queue-microtask "^1.2.2"
+
+semver@^7.3.5:
+  version "7.5.4"
+  resolved "https://registry.yarnpkg.com/semver/-/semver-7.5.4.tgz#483986ec4ed38e1c6c48c34894a9182dbff68a6e"
+  integrity sha512-1bCSESV6Pv+i21Hvpxp3Dx+pSD8lIPt8uVjRrxAUt/nbswYc+tK6Y2btiULjd4+fnq15PX+nqQDC7Oft7WkwcA==
+  dependencies:
+    lru-cache "^6.0.0"
+
+serialport@^11.0.1:
+  version "11.0.1"
+  resolved "https://registry.yarnpkg.com/serialport/-/serialport-11.0.1.tgz#9c7aad877d38124a938a50f89eaef22c44825eae"
+  integrity sha512-j/ntDuewAkqL6g5wKjwV2RTyLBL9cpob8aRd3yLAViYApTsJoYqRleyuzst0OboNTBjBsoxQ4YKYhuYHi1XViQ==
+  dependencies:
+    "@serialport/binding-mock" "10.2.2"
+    "@serialport/bindings-cpp" "11.0.3"
+    "@serialport/parser-byte-length" "11.0.1"
+    "@serialport/parser-cctalk" "11.0.1"
+    "@serialport/parser-delimiter" "11.0.1"
+    "@serialport/parser-inter-byte-timeout" "11.0.1"
+    "@serialport/parser-packet-length" "11.0.1"
+    "@serialport/parser-readline" "11.0.1"
+    "@serialport/parser-ready" "11.0.1"
+    "@serialport/parser-regex" "11.0.1"
+    "@serialport/parser-slip-encoder" "11.0.1"
+    "@serialport/parser-spacepacket" "11.0.1"
+    "@serialport/stream" "11.0.1"
+    debug "4.3.4"
 
 slash@^3.0.0:
   version "3.0.0"
@@ -459,6 +690,11 @@ typescript@^4.5.4:
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.5.5.tgz#d8c953832d28924a9e3d37c73d729c846c5896f3"
   integrity sha512-TCTIul70LyWe6IJWT8QSYeA54WQe8EjQFU4wY52Fasj5UKx88LNYKCgBEHcOMOrFF1rKGbD8v/xcNWVUq9SymA==
 
+web-serial-polyfill@^1.0.13:
+  version "1.0.14"
+  resolved "https://registry.yarnpkg.com/web-serial-polyfill/-/web-serial-polyfill-1.0.14.tgz#fd58e1bc42469dd8a62f7ef37250e21f94ca8d07"
+  integrity sha512-DCgs3SNtmB/liKcNyFnp/kdwShOITwmv+UXQOLffQkNKQMHohK1b9pIz70Eo9Bf+0bKM41hf4uQaN3WH7snKTQ==
+
 which@^1.2.14:
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/which/-/which-1.3.1.tgz#a45043d54f5805316da8d62f9f50918d3da70b0a"
@@ -470,3 +706,8 @@ wrappy@1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/wrappy/-/wrappy-1.0.2.tgz#b5243d8f3ec1aa35f1364605bc0d1036e30ab69f"
   integrity sha1-tSQ9jz7BqjXxNkYFvA0QNuMKtp8=
+
+yallist@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/yallist/-/yallist-4.0.0.tgz#9bb92790d9c0effec63be73519e11a35019a3a72"
+  integrity sha512-3wdGidZyq5PB084XLES5TpOSRA3wjXAlIWMhum2kRcv/41Sn2emQ0dycQW4uZXLejwKvg6EsvbdlVL+FYEct7A==
